@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace LatiteMinimal
 {
     internal class Program
     {
         public static string SelectedVersion;
+        public static Process MinecraftProcess;
         
         public static void WriteColor(string message, ConsoleColor color)
         {
