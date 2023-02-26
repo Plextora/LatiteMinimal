@@ -15,6 +15,20 @@ namespace LatiteMinimal
             Console.ResetColor();
         }
 
+        private static async void LaunchLatiteClient()
+        {
+            if (Process.GetProcessesByName("Minecaft.Windows").Length != 0) return;
+
+            Process.Start("minecraft:");
+
+            while (true)
+            {
+                if (Process.GetProcessesByName("Minecraft.Windows").Length == 0) continue;
+                MinecraftProcess = Process.GetProcessesByName("Minecraft.Windows")[0];
+                break;
+            }
+        }
+
         private static void LatiteClient()
         {
             Console.Clear();
@@ -69,6 +83,8 @@ namespace LatiteMinimal
 
                 break;
             }
+
+            LaunchLatiteClient();
         }
 
         public static void Main(string[] args)
