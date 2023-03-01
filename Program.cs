@@ -35,6 +35,31 @@ namespace LatiteMinimal
             Injector.Inject(dllPath);
         }
 
+        private static async void LaunchCustomDll()
+        {
+            Console.Clear();
+            WriteColor(
+                $"Please input the file path of the DLL you want to inject (Example: {Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\DLLs\\Horion.dll)\n",
+                ConsoleColor.White);
+
+            Console.Write("> ");
+            var filePath = Console.ReadLine();
+
+            if (Process.GetProcessesByName("Minecaft.Windows").Length != 0) return;
+
+            Process.Start("minecraft:");
+
+            while (true)
+            {
+                if (Process.GetProcessesByName("Minecraft.Windows").Length == 0) continue;
+                MinecraftProcess = Process.GetProcessesByName("Minecraft.Windows")[0];
+                break;
+            }
+
+            await Injector.WaitForModules();
+            Injector.Inject(filePath);
+        }
+
         private static void LatiteClient()
         {
             Console.Clear();
@@ -114,6 +139,8 @@ namespace LatiteMinimal
                         LatiteClient();
                         break;
                     case "2":
+                        LaunchCustomDll();
+                        Console.ReadLine();
                         break;
                     case "3":
                         Environment.Exit(0);
