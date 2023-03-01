@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using LatiteMinimal.Utils;
 
 namespace LatiteMinimal
 {
@@ -17,6 +18,8 @@ namespace LatiteMinimal
 
         private static async void LaunchLatiteClient()
         {
+            var dllPath = Downloader.DownloadDll(SelectedVersion);
+            
             if (Process.GetProcessesByName("Minecaft.Windows").Length != 0) return;
 
             Process.Start("minecraft:");
@@ -27,6 +30,9 @@ namespace LatiteMinimal
                 MinecraftProcess = Process.GetProcessesByName("Minecraft.Windows")[0];
                 break;
             }
+
+            await Injector.WaitForModules();
+            Injector.Inject(dllPath);
         }
 
         private static void LatiteClient()
@@ -85,6 +91,7 @@ namespace LatiteMinimal
             }
 
             LaunchLatiteClient();
+            Console.ReadLine();
         }
 
         public static void Main(string[] args)
