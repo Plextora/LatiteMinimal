@@ -16,21 +16,36 @@ public class Downloader
 
     public static string DownloadDll(string mcVersion)
     {
-        Client?.DownloadFile(LatiteDllDownloadUrl, "LatiteClientDLLs.zip");
-        WriteColor("Downloaded LatiteClientDLLs.zip!", ConsoleColor.Green);
-        ZipFile.ExtractToDirectory("LatiteClientDLLs.zip",
-            $"{Directory.GetCurrentDirectory()}\\DLLs");
-        WriteColor("Extracted LatiteClientDLLs.zip!", ConsoleColor.Green);
-        File.Delete("LatiteClientDLLs.zip");
+        if (!Directory.Exists("DLLs"))
+        {
+            Client?.DownloadFile(LatiteDllDownloadUrl, "LatiteClientDLLs.zip");
+            WriteColor("Downloaded LatiteClientDLLs.zip!", ConsoleColor.Green);
+            ZipFile.ExtractToDirectory("LatiteClientDLLs.zip",
+                $"{Directory.GetCurrentDirectory()}\\DLLs");
+            WriteColor("Extracted LatiteClientDLLs.zip!", ConsoleColor.Green);
+            File.Delete("LatiteClientDLLs.zip");
 
-        var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
-        foreach (var i in latiteDLLs)
-            if (i.Contains(mcVersion))
-            {
-                WriteColor($"The file {Regex.Match(i, @"[^\\]+$")} will be injected into Minecraft!",
-                    ConsoleColor.Yellow);
-                return i;
-            }
+            var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
+            foreach (var i in latiteDLLs)
+                if (i.Contains(mcVersion))
+                {
+                    WriteColor($"The file {Regex.Match(i, @"[^\\]+$")} will be injected into Minecraft!",
+                        ConsoleColor.Yellow);
+                    return i;
+                }
+        }
+        else if (Directory.Exists("DLLs"))
+        {
+            WriteColor("Found directory DLLs!", ConsoleColor.Yellow);
+            var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
+            foreach (var i in latiteDLLs)
+                if (i.Contains(mcVersion))
+                {
+                    WriteColor($"The file {Regex.Match(i, @"[^\\]+$")} will be injected into Minecraft!",
+                        ConsoleColor.Yellow);
+                    return i;
+                }
+        }
 
         return "Failed to get DLL";
     }
