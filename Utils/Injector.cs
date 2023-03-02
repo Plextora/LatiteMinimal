@@ -45,6 +45,7 @@ public static class Injector
         catch (Exception? e)
         {
             WriteColor("Ran into an error while injecting!", ConsoleColor.Red);
+            Logging.ErrorLogging(e);
         }
 
         void ApplyAppPackages(string path)

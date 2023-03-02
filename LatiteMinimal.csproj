@@ -47,6 +47,7 @@
     <Compile Include="Utils\API.cs"/>
     <Compile Include="Utils\Downloader.cs"/>
     <Compile Include="Utils\Injector.cs"/>
+    <Compile Include="Utils\Logging.cs"/>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

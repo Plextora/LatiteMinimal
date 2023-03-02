@@ -8,7 +8,13 @@ namespace LatiteMinimal
     {
         public static string SelectedVersion;
         public static Process MinecraftProcess;
-        
+
+        private static void OnUnhandledException(object sender,
+            UnhandledExceptionEventArgs e)
+        {
+            Logging.ErrorLogging(e.ExceptionObject as Exception);
+        }
+
         public static void WriteColor(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;
@@ -121,6 +127,8 @@ namespace LatiteMinimal
 
         public static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            
             Console.Clear();
             WriteColor("Do you want to use Latite Client or a custom DLL?", ConsoleColor.White);
             Console.WriteLine("[1] Latite Client");
