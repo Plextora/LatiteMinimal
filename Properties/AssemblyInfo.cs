@@ -4,12 +4,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LatiteMinimal")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Latite Minimal")]
+[assembly:
+    AssemblyDescription(
+        "A minimal version of the Latite Injector for users in India (or people who are having problems with the main injector)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LatiteMinimal")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyProduct("Latite Minimal")]
+[assembly: AssemblyCopyright("Copyright © Plextora 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
