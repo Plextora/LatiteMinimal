@@ -42,7 +42,7 @@ public static class Injector
             
             WriteColor("Injected Latite Client into Minecraft successfully!", ConsoleColor.Green);
         }
-        catch (Exception? e)
+        catch (Exception e)
         {
             WriteColor("Ran into an error while injecting!", ConsoleColor.Red);
             Logging.ErrorLogging(e);

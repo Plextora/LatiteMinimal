@@ -6,7 +6,7 @@ namespace LatiteMinimal
 {
     internal class Program
     {
-        public static string SelectedVersion;
+        private static string _selectedVersion;
         public static Process MinecraftProcess;
 
         private static void OnUnhandledException(object sender,
@@ -24,7 +24,7 @@ namespace LatiteMinimal
 
         private static async void LaunchLatiteClient()
         {
-            var dllPath = Downloader.DownloadDll(SelectedVersion);
+            var dllPath = Downloader.DownloadDll(_selectedVersion);
             
             if (Process.GetProcessesByName("Minecaft.Windows").Length != 0) return;
 
@@ -88,25 +88,25 @@ namespace LatiteMinimal
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        SelectedVersion = "1.19.63";
+                        _selectedVersion = "1.19.63";
                         break;
                     case "2":
-                        SelectedVersion = "1.19.62";
+                        _selectedVersion = "1.19.62";
                         break;
                     case "3":
-                        SelectedVersion = "1.19.60";
+                        _selectedVersion = "1.19.60";
                         break;
                     case "4":
-                        SelectedVersion = "1.19.51";
+                        _selectedVersion = "1.19.51";
                         break;
                     case "5":
-                        SelectedVersion = "1.18.12";
+                        _selectedVersion = "1.18.12";
                         break;
                     case "6":
-                        SelectedVersion = "1.18";
+                        _selectedVersion = "1.18";
                         break;
                     case "7":
-                        SelectedVersion = "1.17.41";
+                        _selectedVersion = "1.17.41";
                         break;
                     case "8":
                         Environment.Exit(0);
