@@ -11,6 +11,7 @@ You are ***allowed*** to:
 You are ***not allowed*** to:
 
 - Distribute, redistribute or sell any of our files in a website or server.
+- Distribute, redistribute, or sell a modified version of the injector in any form of media.
 - Use the Latite name as a Client in a website or Discord server, as if it's an official Client server, or claiming to
   be official.
 
