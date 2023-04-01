@@ -70,15 +70,16 @@ namespace LatiteMinimal
         {
             Console.Clear();
             WriteColor("What version of Latite Client would you like to use?", ConsoleColor.White);
-            Console.WriteLine("[1] 1.19.71");
-            Console.WriteLine("[2] 1.19.63");
-            Console.WriteLine("[3] 1.19.62");
-            Console.WriteLine("[4] 1.19.60");
-            Console.WriteLine("[5] 1.19.51");
-            Console.WriteLine("[6] 1.18.12");
-            Console.WriteLine("[7] 1.18");
-            Console.WriteLine("[8] 1.17.41");
-            Console.WriteLine("[9] Exit\n");
+            Console.WriteLine("[1] 1.19.73");
+            Console.WriteLine("[2] 1.19.71");
+            Console.WriteLine("[3] 1.19.63");
+            Console.WriteLine("[4] 1.19.62");
+            Console.WriteLine("[5] 1.19.60");
+            Console.WriteLine("[6] 1.19.51");
+            Console.WriteLine("[7] 1.18.12");
+            Console.WriteLine("[8] 1.18");
+            Console.WriteLine("[9] 1.17.41");
+            Console.WriteLine("[10] Exit\n");
             
             while (true)
             {
@@ -89,35 +90,38 @@ namespace LatiteMinimal
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        _selectedVersion = "1.19.71";
+                        _selectedVersion = "1.19.73";
                         break;
                     case "2":
-                        _selectedVersion = "1.19.63";
+                        _selectedVersion = "1.19.71";
                         break;
                     case "3":
-                        _selectedVersion = "1.19.62";
+                        _selectedVersion = "1.19.63";
                         break;
                     case "4":
-                        _selectedVersion = "1.19.60";
+                        _selectedVersion = "1.19.62";
                         break;
                     case "5":
-                        _selectedVersion = "1.19.51";
+                        _selectedVersion = "1.19.60";
                         break;
                     case "6":
-                        _selectedVersion = "1.18.12";
+                        _selectedVersion = "1.19.51";
                         break;
                     case "7":
-                        _selectedVersion = "1.18";
+                        _selectedVersion = "1.18.12";
                         break;
                     case "8":
-                        _selectedVersion = "1.17.41";
+                        _selectedVersion = "1.18";
                         break;
                     case "9":
+                        _selectedVersion = "1.17.41";
+                        break;
+                    case "10":
                         Environment.Exit(0);
                         break;
                     default:
                         WriteColor(
-                            "Invalid option! (Example option selection: Enter 9 for the \"[9] Exit\" option)",
+                            "Invalid option! (Example option selection: Enter 10 for the \"[10] Exit\" option)",
                             ConsoleColor.Red);
                         continue;
                 }
