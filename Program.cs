@@ -145,6 +145,8 @@ namespace LatiteMinimal
                 Console.ReadLine();
                 Environment.Exit(1);
             }
+
+            Console.Title = "Latite Minimal";
             
             Console.Clear();
             WriteColor("Do you want to use Latite Client or a custom DLL?", ConsoleColor.White);
