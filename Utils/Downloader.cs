@@ -18,11 +18,13 @@ public class Downloader
     {
         if (!Directory.Exists("DLLs"))
         {
+            WriteColor("Downloading Latite Client...", ConsoleColor.Yellow);
             Client?.DownloadFile(LatiteDllDownloadUrl, "LatiteClientDLLs.zip");
-            WriteColor("Downloaded LatiteClientDLLs.zip!", ConsoleColor.Green);
+            WriteColor("Downloaded Latite Client!", ConsoleColor.Green);
+            WriteColor($"Extracting Latite Client to {Directory.GetCurrentDirectory()}\\DLLs ...", ConsoleColor.Yellow);
             ZipFile.ExtractToDirectory("LatiteClientDLLs.zip",
                 $"{Directory.GetCurrentDirectory()}\\DLLs");
-            WriteColor("Extracted LatiteClientDLLs.zip!", ConsoleColor.Green);
+            WriteColor($"Extracted Latite Client to {Directory.GetCurrentDirectory()}\\DLLs!", ConsoleColor.Green);
             File.Delete("LatiteClientDLLs.zip");
 
             var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
@@ -36,7 +38,7 @@ public class Downloader
         }
         else if (Directory.Exists("DLLs"))
         {
-            WriteColor("Found directory DLLs!", ConsoleColor.Yellow);
+            WriteColor("Found Latite Client directory!", ConsoleColor.Yellow);
             var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
             foreach (var i in latiteDLLs)
                 if (i.Contains(mcVersion))
