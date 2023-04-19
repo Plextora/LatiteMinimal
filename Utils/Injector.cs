@@ -44,7 +44,7 @@ public static class Injector
         }
         catch (Exception e)
         {
-            WriteColor("Ran into an error while injecting!", ConsoleColor.Red);
+            WriteColor("An error occured while inejecting!", ConsoleColor.Red);
             Logging.ErrorLogging(e);
         }
 

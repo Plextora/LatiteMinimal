@@ -20,11 +20,11 @@ public class Downloader
         {
             WriteColor("Downloading Latite Client...", ConsoleColor.Yellow);
             Client?.DownloadFile(LatiteDllDownloadUrl, "LatiteClientDLLs.zip");
-            WriteColor("Downloaded Latite Client!", ConsoleColor.Green);
+            WriteColor("Successfully downloaded Latite Client!", ConsoleColor.Green);
             WriteColor($"Extracting Latite Client to {Directory.GetCurrentDirectory()}\\DLLs ...", ConsoleColor.Yellow);
             ZipFile.ExtractToDirectory("LatiteClientDLLs.zip",
                 $"{Directory.GetCurrentDirectory()}\\DLLs");
-            WriteColor($"Extracted Latite Client to {Directory.GetCurrentDirectory()}\\DLLs!", ConsoleColor.Green);
+            WriteColor($"Successfully extracted Latite Client to {Directory.GetCurrentDirectory()}\\DLLs!", ConsoleColor.Green);
             File.Delete("LatiteClientDLLs.zip");
 
             var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
