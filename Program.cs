@@ -70,20 +70,22 @@ namespace LatiteMinimal
         {
             Console.Clear();
             WriteColor("What version of Latite Client would you like to use?", ConsoleColor.White);
-            Console.WriteLine("[1] 1.20.0");
-            Console.WriteLine("[2] 1.19.83");
-            Console.WriteLine("[3] 1.19.81");
-            Console.WriteLine("[4] 1.19.80");
-            Console.WriteLine("[5] 1.19.73");
-            Console.WriteLine("[6] 1.19.71");
-            Console.WriteLine("[7] 1.19.63");
-            Console.WriteLine("[8] 1.19.62");
-            Console.WriteLine("[9] 1.19.60");
-            Console.WriteLine("[10] 1.19.51");
-            Console.WriteLine("[11] 1.18.12");
-            Console.WriteLine("[12] 1.18");
-            Console.WriteLine("[13] 1.17.41");
-            Console.WriteLine("[14] Exit\n");
+            Console.WriteLine("[1] 1.20.10");
+            Console.WriteLine("[2] 1.20.1");
+            Console.WriteLine("[3] 1.20.0");
+            Console.WriteLine("[4] 1.19.83");
+            Console.WriteLine("[5] 1.19.81");
+            Console.WriteLine("[6] 1.19.80");
+            Console.WriteLine("[7] 1.19.73");
+            Console.WriteLine("[8] 1.19.71");
+            Console.WriteLine("[9] 1.19.63");
+            Console.WriteLine("[10] 1.19.62");
+            Console.WriteLine("[11] 1.19.60");
+            Console.WriteLine("[12] 1.19.51");
+            Console.WriteLine("[13] 1.18.12");
+            Console.WriteLine("[14] 1.18");
+            Console.WriteLine("[15] 1.17.41");
+            Console.WriteLine("[16] Exit\n");
 
             while (true)
             {
@@ -91,56 +93,39 @@ namespace LatiteMinimal
                 Console.Write("> ");
                 Console.ResetColor();
 
-                switch (Console.ReadLine())
+                string readline = Console.ReadLine();
+
+                _selectedVersion = readline switch
                 {
-                    case "1":
-                        _selectedVersion = "1.20.0";
-                        break;
-                    case "2":
-                        _selectedVersion = "1.19.83";
-                        break;
-                    case "3":
-                        _selectedVersion = "1.19.81";
-                        break;
-                    case "4":
-                        _selectedVersion = "1.19.80";
-                        break;
-                    case "5":
-                        _selectedVersion = "1.19.73";
-                        break;
-                    case "6":
-                        _selectedVersion = "1.19.71";
-                        break;
-                    case "7":
-                        _selectedVersion = "1.19.63";
-                        break;
-                    case "8":
-                        _selectedVersion = "1.19.62";
-                        break;
-                    case "9":
-                        _selectedVersion = "1.19.60";
-                        break;
-                    case "10":
-                        _selectedVersion = "1.19.51";
-                        break;
-                    case "11":
-                        _selectedVersion = "1.18.12";
-                        break;
-                    case "12":
-                        _selectedVersion = "1.18";
-                        break;
-                    case "13":
-                        _selectedVersion = "1.17.41";
-                        break;
-                    case "14":
+                    "1" => "1.20.10",
+                    "2" => "1.20.1",
+                    "3" => "1.20.0",
+                    "4" => "1.19.83",
+                    "5" => "1.19.81",
+                    "6" => "1.19.80",
+                    "7" => "1.19.73",
+                    "8" => "1.19.71",
+                    "9" => "1.19.63",
+                    "10" => "1.19.62",
+                    "11" => "1.19.60",
+                    "12" => "1.19.51",
+                    "13" => "1.18.12",
+                    "14" => "1.18",
+                    "15" => "1.17.41",
+                    _ => null,
+                };
+
+                if (_selectedVersion == null)
+                {
+                    if (readline == "16")
                         Environment.Exit(0);
-                        break;
-                    default:
+                    else
                         WriteColor(
-                            "Invalid option! (Example option selection: Enter 14 for the \"[14] Exit\" option)",
+                            "Invalid option! (Example option selection: Enter 16 for the \"[16] Exit\" option)",
                             ConsoleColor.Red);
-                        continue;
+                    continue;
                 }
+
 
                 break;
             }
