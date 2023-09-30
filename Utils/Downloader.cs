@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
-using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using static LatiteMinimal.Program;
 
 namespace LatiteMinimal.Utils;
@@ -12,14 +13,22 @@ public class Downloader
     private const string LatiteDllDownloadUrl =
         "https://drive.google.com/uc?export=download&id=1uN8M0hn_bg3vImidA8VQxKwj7QW2pEFs";
 
-    private static readonly WebClient Client = new();
+    private static void DownloadFile(string url, string path)
+    {
+        using HttpClient client = new();
+        using Task<Stream> stream = client.GetStreamAsync(url);
+        using FileStream fileStream = new(path, FileMode.OpenOrCreate);
+        stream.Result.CopyTo(fileStream);
+        if (stream.IsCompleted && !stream.IsCanceled && !stream.IsFaulted) // this is so much simpler in .net 6.0
+            WriteColor("Downloaded file(s) successfully!", ConsoleColor.Green);
+    }
 
     public static string DownloadDll(string mcVersion)
     {
         if (!Directory.Exists("DLLs"))
         {
             WriteColor("Downloading Latite Client...", ConsoleColor.Yellow);
-            Client?.DownloadFile(LatiteDllDownloadUrl, "LatiteClientDLLs.zip");
+            DownloadFile(LatiteDllDownloadUrl, "LatiteClientDLLs.zip");
             WriteColor("Downloaded Latite Client!", ConsoleColor.Green);
             WriteColor($"Extracting Latite Client to {Directory.GetCurrentDirectory()}\\DLLs ...", ConsoleColor.Yellow);
             ZipFile.ExtractToDirectory("LatiteClientDLLs.zip",
