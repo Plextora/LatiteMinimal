@@ -14,7 +14,7 @@ public class Logging
             "\nAn error has occurred! Please report this error to the developers!\nIf you don't know how to report errors, enter \"y\" into this console to visit the #bugs forum in the Discord (Make sure to read the \"Read this before posting your bug report!\" post!",
             ConsoleColor.Red);
 
-        var option = Console.ReadLine();
+        string option = Console.ReadLine();
 
         if (option == "y")
         {

@@ -27,8 +27,8 @@ public class Downloader
             WriteColor($"Extracted Latite Client to {Directory.GetCurrentDirectory()}\\DLLs!", ConsoleColor.Green);
             File.Delete("LatiteClientDLLs.zip");
 
-            var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
-            foreach (var i in latiteDLLs)
+            string[] latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
+            foreach (string i in latiteDLLs)
                 if (i.Contains(mcVersion))
                 {
                     WriteColor($"The file {Regex.Match(i, @"[^\\]+$")} will be injected into Minecraft!",
@@ -39,8 +39,8 @@ public class Downloader
         else if (Directory.Exists("DLLs"))
         {
             WriteColor("Found Latite Client directory!", ConsoleColor.Yellow);
-            var latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
-            foreach (var i in latiteDLLs)
+            string[] latiteDLLs = Directory.GetFiles($"{Directory.GetCurrentDirectory()}\\DLLs");
+            foreach (string i in latiteDLLs)
                 if (i.Contains(mcVersion))
                 {
                     WriteColor($"The file {Regex.Match(i, @"[^\\]+$")} will be injected into Minecraft!",

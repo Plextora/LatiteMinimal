@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using LatiteMinimal.Utils;
 
@@ -24,7 +25,7 @@ namespace LatiteMinimal
 
         private static async void LaunchLatiteClient()
         {
-            var dllPath = Downloader.DownloadDll(_selectedVersion);
+            string dllPath = Downloader.DownloadDll(_selectedVersion);
             
             if (Process.GetProcessesByName("Minecaft.Windows").Length != 0) return;
 
@@ -49,7 +50,7 @@ namespace LatiteMinimal
                 ConsoleColor.White);
 
             Console.Write("> ");
-            var filePath = Console.ReadLine();
+            string filePath = Console.ReadLine();
 
             if (Process.GetProcessesByName("Minecaft.Windows").Length != 0) return;
 
@@ -68,24 +69,32 @@ namespace LatiteMinimal
 
         private static void LatiteClient()
         {
+            Dictionary<string, string> versionMap = new()
+            {
+                ["1"] = "1.20.15",
+                ["2"] = "1.20.12",
+                ["3"] = "1.20.10",
+                ["4"] = "1.20.1",
+                ["5"] = "1.20.0",
+                ["6"] = "1.19.83",
+                ["7"] = "1.19.81",
+                ["8"] = "1.19.80",
+                ["9"] = "1.19.73",
+                ["10"] = "1.19.71",
+                ["11"] = "1.19.63",
+                ["12"] = "1.19.62",
+                ["13"] = "1.19.60",
+                ["14"] = "1.19.51",
+                ["15"] = "1.18.12",
+                ["16"] = "1.18",
+                ["17"] = "1.17.41",
+            };
+
             Console.Clear();
             WriteColor("What version of Latite Client would you like to use?", ConsoleColor.White);
-            Console.WriteLine("[1] 1.20.10");
-            Console.WriteLine("[2] 1.20.1");
-            Console.WriteLine("[3] 1.20.0");
-            Console.WriteLine("[4] 1.19.83");
-            Console.WriteLine("[5] 1.19.81");
-            Console.WriteLine("[6] 1.19.80");
-            Console.WriteLine("[7] 1.19.73");
-            Console.WriteLine("[8] 1.19.71");
-            Console.WriteLine("[9] 1.19.63");
-            Console.WriteLine("[10] 1.19.62");
-            Console.WriteLine("[11] 1.19.60");
-            Console.WriteLine("[12] 1.19.51");
-            Console.WriteLine("[13] 1.18.12");
-            Console.WriteLine("[14] 1.18");
-            Console.WriteLine("[15] 1.17.41");
-            Console.WriteLine("[16] Exit\n");
+            foreach (KeyValuePair<string, string> kvp in versionMap)
+                Console.WriteLine($"[{kvp.Key}] {kvp.Value}");
+            Console.WriteLine("[18] Exit");
 
             while (true)
             {
@@ -95,33 +104,21 @@ namespace LatiteMinimal
 
                 string readline = Console.ReadLine();
 
-                _selectedVersion = readline switch
-                {
-                    "1" => "1.20.10",
-                    "2" => "1.20.1",
-                    "3" => "1.20.0",
-                    "4" => "1.19.83",
-                    "5" => "1.19.81",
-                    "6" => "1.19.80",
-                    "7" => "1.19.73",
-                    "8" => "1.19.71",
-                    "9" => "1.19.63",
-                    "10" => "1.19.62",
-                    "11" => "1.19.60",
-                    "12" => "1.19.51",
-                    "13" => "1.18.12",
-                    "14" => "1.18",
-                    "15" => "1.17.41",
-                    _ => null,
-                };
+                /*
+                 * We use TryGetValue to retrieve the corresponding version string based on user input.
+                 * If the number inputted (readline) is found in the dictionary, it assigns the version string to _selectedVersion.
+                 * If readline (user input) is null, automatically use "1" (version 1.20.15)
+                 * Otherwise, it assigns null.
+                 */
+                _selectedVersion = versionMap.TryGetValue(readline ?? "1", out string selectedVersion) ? selectedVersion : null;
 
                 if (_selectedVersion == null)
                 {
-                    if (readline == "16")
+                    if (readline == "18")
                         Environment.Exit(0);
                     else
                         WriteColor(
-                            "Invalid option! (Example option selection: Enter 16 for the \"[16] Exit\" option)",
+                            "Invalid option! (Example option selection: Enter 18 for the \"[18] Exit\" option)",
                             ConsoleColor.Red);
                     continue;
                 }

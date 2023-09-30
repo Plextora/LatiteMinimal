@@ -23,15 +23,15 @@ public static class Injector
         {
             ApplyAppPackages(path);
 
-            var targetProcess = Process.GetProcessesByName("Minecraft.Windows")[0];
+            Process targetProcess = Process.GetProcessesByName("Minecraft.Windows")[0];
 
-            var procHandle = Api.OpenProcess(Api.PROCESS_CREATE_THREAD | Api.PROCESS_QUERY_INFORMATION |
-                                             Api.PROCESS_VM_OPERATION | Api.PROCESS_VM_WRITE | Api.PROCESS_VM_READ,
+            nint procHandle = Api.OpenProcess(Api.PROCESS_CREATE_THREAD | Api.PROCESS_QUERY_INFORMATION |
+                                              Api.PROCESS_VM_OPERATION | Api.PROCESS_VM_WRITE | Api.PROCESS_VM_READ,
                 false, targetProcess.Id);
 
-            var loadLibraryAddress = Api.GetProcAddress(Api.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            nint loadLibraryAddress = Api.GetProcAddress(Api.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
 
-            var allocMemAddress = Api.VirtualAllocEx(procHandle, IntPtr.Zero,
+            nint allocMemAddress = Api.VirtualAllocEx(procHandle, IntPtr.Zero,
                 (uint)((path.Length + 1) * Marshal.SizeOf(typeof(char))), Api.MEM_COMMIT
                                                                           | Api.MEM_RESERVE, Api.PAGE_READWRITE);
 
@@ -50,8 +50,8 @@ public static class Injector
 
         void ApplyAppPackages(string path)
         {
-            var infoFile = new FileInfo(path);
-            var fSecurity = infoFile.GetAccessControl();
+            FileInfo infoFile = new(path);
+            FileSecurity fSecurity = infoFile.GetAccessControl();
             fSecurity.AddAccessRule(
                 new FileSystemAccessRule(new SecurityIdentifier("S-1-15-2-1"),
                     FileSystemRights.FullControl, InheritanceFlags.None,
