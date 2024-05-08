@@ -71,31 +71,34 @@ namespace LatiteMinimal
         {
             Dictionary<string, string> versionMap = new()
             {
-                ["1"] = "1.20.32",
-                ["2"] = "1.20.15",
-                ["3"] = "1.20.12",
-                ["4"] = "1.20.10",
-                ["5"] = "1.20.1",
-                ["6"] = "1.20.0",
-                ["7"] = "1.19.83",
-                ["8"] = "1.19.81",
-                ["9"] = "1.19.80",
-                ["10"] = "1.19.73",
-                ["11"] = "1.19.71",
-                ["12"] = "1.19.63",
-                ["13"] = "1.19.62",
-                ["14"] = "1.19.60",
-                ["15"] = "1.19.51",
-                ["16"] = "1.18.12",
-                ["17"] = "1.18",
-                ["18"] = "1.17.41",
+                ["1"] = "1.20.81",
+                ["2"] = "1.20.80",
+                ["3"] = "1.20.60",
+                ["4"] = "1.20.32",
+                ["5"] = "1.20.15",
+                ["6"] = "1.20.12",
+                ["7"] = "1.20.10",
+                ["8"] = "1.20.1",
+                ["9"] = "1.20.0",
+                ["10"] = "1.19.83",
+                ["11"] = "1.19.81",
+                ["12"] = "1.19.80",
+                ["13"] = "1.19.73",
+                ["14"] = "1.19.71",
+                ["15"] = "1.19.63",
+                ["16"] = "1.19.62",
+                ["17"] = "1.19.60",
+                ["18"] = "1.19.51",
+                ["19"] = "1.18.12",
+                ["20"] = "1.18",
+                ["21"] = "1.17.41",
             };
 
             Console.Clear();
             WriteColor("What version of Latite Client would you like to use?", ConsoleColor.White);
             foreach (KeyValuePair<string, string> kvp in versionMap)
                 Console.WriteLine($"[{kvp.Key}] {kvp.Value}");
-            Console.WriteLine("[19] Exit");
+            Console.WriteLine("[22] Exit");
 
             while (true)
             {
@@ -115,11 +118,11 @@ namespace LatiteMinimal
 
                 if (_selectedVersion == null)
                 {
-                    if (readline == "18")
+                    if (readline == "22")
                         Environment.Exit(0);
                     else
                         WriteColor(
-                            "Invalid option! (Example option selection: Enter 18 for the \"[18] Exit\" option)",
+                            "Invalid option! (Example option selection: Enter 22 for the \"[22] Exit\" option)",
                             ConsoleColor.Red);
                     continue;
                 }
