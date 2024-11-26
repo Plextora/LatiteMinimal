@@ -23,7 +23,7 @@ namespace LatiteMinimal
             Console.ResetColor();
         }
 
-        private static async void LaunchLatiteClient()
+        private static void LaunchLatiteClient()
         {
             string dllPath = Downloader.DownloadDll(_selectedVersion);
             
@@ -38,7 +38,6 @@ namespace LatiteMinimal
                 break;
             }
 
-            await Injector.WaitForModules();
             Injector.Inject(dllPath);
         }
 
